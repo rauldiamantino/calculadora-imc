@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Calculadora I.M.C.</title>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Calculadora</h1>
+      <input type="text" name="txtAltura" id="txtAltura" placeholder="Altura(m)">
+      <input type="text" name="txtPeso" id="txtPeso" placeholder="Peso(kg)">
+      <input type="button" value="Calcular" id="buttonCalcular" onclick="calcular()">
+      <input type="button" value="Limpar" id="buttonLimpar" onclick="limpar()">
+      <div id="resImc">
+      </div>
+      <div id="resLeg">
+      </div>
+    </section>
+  </main> 
+  <script src="script/script.js"></script>
+</body>
+</html>
