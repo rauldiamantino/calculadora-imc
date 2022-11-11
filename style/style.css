@@ -3,10 +3,12 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: rgb(56, 56, 56);
+  /* background-color: rgb(56, 56, 56); */
+  background-color: #2c2c2c;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -20,71 +22,128 @@ main {
   display: flex;
   height: 100vh;
   width: 100vw;
+  flex-direction: column;
+  gap: 10px;
   align-items: center;
   justify-content: center;
 }
 
 section {
   width: 400px;
-  min-height: 200px;
-  padding: 40px;
+  padding: 30px 50px;
   border-radius: 5px;
-  display: flex;
-  align-content: flex-start;
-  flex-flow: row wrap;
-  gap: 10px;
   background-color: #4f355e;
   box-shadow: 0px 10px 10px #2222225b;
 }
 
-#txtAltura, #txtPeso {
-  padding: 10px;  
-  width: 100%;
+.hide-text {
+  position: absolute;
+  left: -999em;
+  width: 1em;
+  overflow: hidden;
 }
 
-#buttonCalcular {
-  padding: 10px;
-  width: 100px;
+.hide-msg {
+  display: none;
+}
+
+#form-imc {
+  border: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+#form-imc legend {
+  color: rgb(240, 240, 240);
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#txtHeight, #txtWeight {
+  height: 50px;
+  padding-left: 20px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  background-color:  #d1d1d1;
+}
+
+#txtHeight:hover {
+  background-color:  #d1d1d1a9;
+}
+
+#txtHeight:focus{
+  background-color:  #d1d1d1a9;
+}
+
+#txtWeight:hover {
+  background-color:  #d1d1d1a9;
+}
+
+#txtWeight:focus{
+  background-color:  #d1d1d1a9;
+}
+
+#buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#calculateButton {
+  height: 50px;
+  width: 50%;
   background-color: #57AB7E;
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: rgb(240, 240, 240);
   border: none;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.2s;
+  border-radius: 3px;
 }
 
-#buttonCalcular:hover {
+#calculateButton:hover {
   background-color: #4b8d6a;
+  color: #fff;
 }
 
-#buttonLimpar {
-  padding: 10px;
-  width: 100px;
-  background-color: #222222;
+#clearButton {
+  height: 50px;
+  width: 50%;
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: rgb(240, 240, 240);
   border: none;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.2s;
+  border-radius: 3px;
+  background-color: #222222;
 }
 
-#buttonLimpar:hover {
+#clearButton:hover {
   background-color: #141414;
 }
 
-#resImc {
-  width: 100%;
+.resultImc {
   font-size: 60px;
   font-weight: bold;
-  color: #57AB7E;
+  color: #fff;
+  text-align: center;
+  background-color: #291c31;
 }
 
-#resLeg {
-  width: 100%;
+.otherMsg {
   font-weight: bold;
   color: #fff;
+  padding: 30px 0;
+  text-align: center;
+  background-color: #5e3535;
 }
 
 @media (max-width: 700px) {

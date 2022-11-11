@@ -1,53 +1,50 @@
-var txtAltura = document.getElementById('txtAltura').focus()
-var resImc = document.getElementById('resImc')
-var resLeg = document.getElementById('resLeg')
+const calcButton = document.querySelector("#calculateButton");
+calcButton.addEventListener("click", () => getInputs());
 
-function calcular() {
-  var txtAltura = document.getElementById('txtAltura')
-  var txtPeso = document.getElementById('txtPeso')
-  var altura = Number(txtAltura.value.replace(',','.')) //aceita a vírgula e ponto no input
-  var peso = Number(txtPeso.value.replace(',','.'))
+const clearButton = document.querySelector("#clearButton");
+clearButton.addEventListener("click", () => clearImcResult());
 
-  if (txtAltura.value.length == 0 || txtPeso.value.length == 0) {
-    alert('[ERRO] Informe ALTURA e PESO para calcular')
-    txtAltura.focus()
-  } else {
-      if (altura % 1 === 0){
-        var imc = peso / ((altura/100) * (altura/100))
-        var resposta = imc.toFixed(1)
-        resImc.innerText = resposta
-        /* Se o usuário não digitar a vírgula na altura, converte para um número com vírgula. Senão, segue o fluxo normal */
-      } else {
-          var imc = peso / (altura * altura)
-          var resposta = imc.toFixed(1)
-          resImc.innerText = resposta
-        }    
-          if (resposta >= 40) {
-            resLeg.innerText = 'Obesidade Grau III'
-          } else if (resposta >= 35) {
-            resLeg.innerText = 'Obesidade Grau II'
-          } else if (resposta >= 30){
-            resLeg.innerText = 'Obesidade Grau I'
-          } else if (resposta >= 25) {
-            resLeg.innerText = 'Sobrepeso'
-          } else if (resposta >= 18.5) {
-            resLeg.innerText = 'Peso Ideal' 
-          } else {
-            resLeg.innerText = 'Abaixo do Peso'
-          }
-  }
-}
+/* get input values */
+const getInputs = () => {
+     const height = formatNumber(document.querySelector("#txtHeight"));
+     const weight = formatNumber(document.querySelector("#txtWeight"));
+     return verifyIfEmpty(height, weight);
+};
 
-function limpar() {
-  var txtAltura = document.getElementById('txtAltura').value = ''
-  var txtPeso = document.getElementById('txtPeso').value = '' 
-  var focus = document.getElementById('txtAltura').focus()
-  resImc.innerText = ''
-  resLeg.innerText = ''
+/* format number captured in input */
+const formatNumber = number => number.value.replace(",", ".");
 
-}
+/* checks if the number is valid and prints an error message*/
+const verifyIfEmpty = (a, b) => (a == 0 || b == 0 ? printError() : calculateImc(a, b));
 
+const printError = fn => {
+     document.querySelector("#txtHeight").focus();
+     const msg = document.querySelector(".otherMsg");
+     msg.innerText = "Preencha os campos corretamente";
+     msg.classList.remove("hide-msg");
+     setTimeout(function () {
+          msg.innerText = "";
+          msg.classList.add("hide-msg");
+     }, 2000);
+};
 
+/* calculate imc with input data  */
+const calculateImc = (h, w) => printImc(w / (h * h));
 
+const printImc = fn => {
+     const msg = document.querySelector(".resultImc");
+     msg.classList.remove("hide-msg");
+     msg.innerText = fn.toFixed(1);
+};
 
+const clearImcResult = () => {
+     const resultImc = document.querySelector(".resultImc");
+     resultImc.classList.add("hide-msg");
 
+     const height = document.querySelector("#txtHeight");
+     height.value = "";
+     height.focus();
+
+     const weight = document.querySelector("#txtWeight");
+     weight.value = "";
+};

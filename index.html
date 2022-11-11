@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,45 @@
   <link rel="stylesheet" href="style/style.css">
   <title>Calculadora I.M.C.</title>
 </head>
+
 <body>
   <main>
-    <section>
+    <!-- <section>
       <h1>Calculadora</h1>
-      <input type="text" name="txtAltura" id="txtAltura" placeholder="Altura(m)">
-      <input type="text" name="txtPeso" id="txtPeso" placeholder="Peso(kg)">
-      <input type="button" value="Calcular" id="buttonCalcular" onclick="calcular()">
-      <input type="button" value="Limpar" id="buttonLimpar" onclick="limpar()">
-      <div id="resImc">
+      <input type="text" name="txtHeight" id="txtHeight" placeholder="Ex.: 1,70">
+      <input type="text" name="txtWeight" id="txtWeight" placeholder="Ex.: 65,5">
+      <input type="button" value="Calcular" id="calculateButton">
+      <input type="button" value="Limpar" id="clearButton">
+      <div id="resultImc">
       </div>
-      <div id="resLeg">
+      <div id="otherMsg">
+      </div>
+    </section> -->
+
+    <section>
+      <div>
+        <fieldset id="form-imc">
+          <legend>Calculadora de IMC</legend>
+          <label for="txtHeight" class="hide-text">Altura</label>
+          <input type="text" id="txtHeight" placeholder="Ex. 1.70" autofocus>
+
+          <label for="txtWeight" class="hide-text">Peso</label>
+          <input type="text" id="txtWeight" placeholder="Ex. 65,5">
+
+          <div id="buttons">
+            <button id="calculateButton">Calcular</button>
+            <button id="clearButton">Limpar</button>
+          </div>
+        </fieldset>
       </div>
     </section>
-  </main> 
+    <section class="resultImc hide-msg">
+    </section>
+
+    <section class="otherMsg hide-msg">
+    </section>
+  </main>
   <script src="script/script.js"></script>
 </body>
+
 </html>
