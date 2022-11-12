@@ -4,7 +4,7 @@ Calculadora básica em Javascript.
 
 <a href="https://rauldiamantino.github.io/calculadora-imc/">Clique para acessar o projeto</a>
 
-# Preview
+# Primeira versão ()
 
 ![image](https://user-images.githubusercontent.com/100098231/192160706-6205202e-5f38-4bed-a85e-10b3637f95f1.png)
 
