@@ -72,9 +72,9 @@ const imcRating = fn => {
           return 5; // obesity3
      } else if (fn >= 35.0) {
           return 4; // obesity2
-     } else if (fn >= 30) {
+     } else if (fn >= 30.0) {
           return 3; // obesity1
-     } else if (fn >= 25) {
+     } else if (fn >= 25.0) {
           return 2; // overWeight
      } else if (fn >= 18.5) {
           return 1; // normal
