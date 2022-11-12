@@ -1,6 +1,9 @@
 const calcButton = document.querySelector("#calculateButton");
 calcButton.addEventListener("click", () => getInputs());
 
+/* get Enter key */
+document.addEventListener("keypress", e => (e.key === "Enter" ? getInputs() : false));
+
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener("click", () => clearImcResult());
 
@@ -8,7 +11,8 @@ clearButton.addEventListener("click", () => clearImcResult());
 const getInputs = () => {
      const height = formatNumber(document.querySelector("#txtHeight"));
      const weight = formatNumber(document.querySelector("#txtWeight"));
-     return verifyIfEmpty(height, weight);
+     verifyIfEmpty(height, weight);
+     clearButton.focus();
 };
 
 /* format number captured in input */
@@ -35,6 +39,7 @@ const printError = fn => {
 
           msg.innerText = "";
           msg.classList.add("hide-msg");
+          height.focus()
      }, 2000);
 };
 

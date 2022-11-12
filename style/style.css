@@ -15,11 +15,10 @@ body {
 main {
      display: flex;
      width: 800px;
-     height: 97vh;
+     height: 100vh;
      align-items: center;
      justify-content: center;
      margin: auto;
-     margin-top: 20px;
      flex-direction: column;
 }
 
@@ -176,13 +175,15 @@ td {
 }
 
 .containerBottom {
-     display: flex;
      width: 100%;
+     height: 70px;
      margin-top: 10px;
 }
 
 .resultImc {
      width: 100%;
+     height: 70px;
+     line-height: 70px;
      font-size: 60px;
      font-weight: bold;
      text-align: center;
@@ -193,16 +194,18 @@ td {
 
 .otherMsg {
      width: 100%;
+     height: 70px;
+     line-height: 70px;
      font-weight: bold;
      color: #fff;
-     padding: 30px 0;
+     /* padding: 30px 0; */
      text-align: center;
      border-radius: 5px;
      background-color: #5e3535;
 }
 
 footer {
-     width: 100%;
+     max-width: 100vw;
      padding: 20px;
      text-align: center;
      margin-top: 20px;
@@ -212,28 +215,35 @@ footer {
 
 @media (max-width: 700px) {
      main {
-          width: 100vw;
+          margin: auto;
+          width: 96vw;
           height: 100%;
      }
      .containerTop {
           margin: auto;
-          width: 100vw;
           flex-direction: column;
           align-items: center;
           gap: 20px;
-          order: 2;
+          order: 1;
      }
      .containerLeft {
+          margin: auto;
           width: 90vw;
      }
 
      .containerRight {
+          margin: auto;
           width: 90vw;
      }
 
      .containerBottom {
-          margin: auto;
           width: 90vw;
-          margin-bottom: 10px;
+          height: 100%;
+          margin-top: 10px;
+     }
+
+     .resultImc,
+     .otherMsg {
+          margin-bottom: 14px;
      }
 }
