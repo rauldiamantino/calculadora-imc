@@ -18,11 +18,21 @@ const formatNumber = number => number.value.replace(",", ".");
 const verifyIfEmpty = (a, b) => (a == 0 || b == 0 ? printError() : calculateImc(a, b));
 
 const printError = fn => {
-     document.querySelector("#txtHeight").focus();
+     const height = document.querySelector("#txtHeight");
+     height.focus();
+     height.classList.add("inputBackGround");
+
+     const weight = document.querySelector("#txtWeight");
+     weight.classList.add("inputBackGround");
+
      const msg = document.querySelector(".otherMsg");
      msg.innerText = "Preencha os campos corretamente";
      msg.classList.remove("hide-msg");
+
      setTimeout(function () {
+          height.classList.remove("inputBackGround");
+          weight.classList.remove("inputBackGround");
+
           msg.innerText = "";
           msg.classList.add("hide-msg");
      }, 2000);
@@ -35,7 +45,44 @@ const printImc = fn => {
      const msg = document.querySelector(".resultImc");
      msg.classList.remove("hide-msg");
      msg.innerText = fn.toFixed(1);
+
+     /* access the table and set class */
+     const getTable = () => {
+          const tableImc = document.querySelectorAll("tbody tr");
+          return tableImc.forEach(verify);
+     };
+
+     const verify = (el, index) => {
+          removeRating(el);
+          if (index == imcRating(fn)) {
+               return addRating(el);
+          }
+     };
+
+     getTable();
 };
+
+/* add and remove table class */
+const addRating = element => element.classList.add("imcRating");
+const removeRating = element => element.classList.remove("imcRating");
+
+/* Imc rating */ 
+const imcRating = fn => {
+     if (fn < 18.5) {
+          return 0; // underWeight
+     } else if (fn >= 18.5 && fn < 25) {
+          return 1; // normal
+     } else if (fn >= 25 && fn < 30) {
+          return 2; // overWeight
+     } else if (fn >= 30 && fn < 35) {
+          return 3; // obesity1
+     } else if (fn >= 35.0 && fn < 40) {
+          return 4; // obesity2
+     } else if (fn >= 40.0) {
+          return 5; // obesity3
+     }
+};
+
 
 const clearImcResult = () => {
      const resultImc = document.querySelector(".resultImc");
@@ -47,4 +94,7 @@ const clearImcResult = () => {
 
      const weight = document.querySelector("#txtWeight");
      weight.value = "";
+
+     const tableImc = document.querySelectorAll("tbody tr");
+     tableImc.forEach(removeRating);
 };
