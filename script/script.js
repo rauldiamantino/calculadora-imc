@@ -39,7 +39,13 @@ const printError = fn => {
 };
 
 /* calculate imc with input data  */
-const calculateImc = (h, w) => printImc(w / (h * h));
+const calculateImc = (h, w) => {
+     const imcFactor = w / (h * h);
+     const alternativeImcFactor = w / ((h / 100) * (h / 100));
+     const ifHeightWithoutComma = h % 1 === 0;
+
+     return ifHeightWithoutComma ? printImc(alternativeImcFactor) : printImc(imcFactor);
+};
 
 const printImc = fn => {
      const msg = document.querySelector(".resultImc");
@@ -59,7 +65,7 @@ const printImc = fn => {
           }
      };
 
-     getTable();
+     return getTable();
 };
 
 /* add and remove table class */

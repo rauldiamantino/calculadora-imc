@@ -15,6 +15,9 @@ body {
 main {
      display: flex;
      width: 800px;
+     height: 97vh;
+     align-items: center;
+     justify-content: center;
      margin: auto;
      margin-top: 20px;
      flex-direction: column;
@@ -28,10 +31,13 @@ main {
 }
 
 .containerLeft {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
      padding: 30px 40px;
      width: 300px;
      max-width: 100%;
-     height: 280px;
+     min-height: 280px;
      border-radius: 5px;
      background-color: #4f355e;
      box-shadow: 0px 10px 10px #2222225b;
@@ -141,7 +147,7 @@ main {
      display: flex;
      justify-content: center;
      align-items: center;
-     height: 280px;
+     min-height: 280px;
      border-radius: 5px;
      box-shadow: 0px 10px 10px #2222225b;
 }
@@ -195,9 +201,19 @@ td {
      background-color: #5e3535;
 }
 
+footer {
+     width: 100%;
+     padding: 20px;
+     text-align: center;
+     margin-top: 20px;
+     background-color: rgb(29, 29, 29);
+     color: #d1d1d1;
+}
+
 @media (max-width: 700px) {
      main {
           width: 100vw;
+          height: 100%;
      }
      .containerTop {
           margin: auto;
