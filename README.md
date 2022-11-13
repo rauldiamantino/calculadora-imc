@@ -26,8 +26,6 @@ Desktop:
 
 # Primeira versão (25/09/22)
 
-Javascript imperativo, antes de conhecer o funcional.
-
 ![image](https://user-images.githubusercontent.com/100098231/192160706-6205202e-5f38-4bed-a85e-10b3637f95f1.png)
 
 ![image](https://user-images.githubusercontent.com/100098231/192160723-a1aec2da-088d-40e7-a7cf-96479aacdbd9.png)
