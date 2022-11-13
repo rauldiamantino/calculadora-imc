@@ -1,3 +1,4 @@
+/* Buttons */
 const $calcButton = document.querySelector("#calculateButton");
 const $clearButton = document.querySelector("#clearButton");
 
@@ -60,6 +61,7 @@ const calculateImc = (height, weight) => {
 
 const printImc = fn => {
      const $msg = document.querySelector(".resultImc");
+
      $msg.classList.remove("hide-msg");
      $msg.innerText = fn.toFixed(2);
 
