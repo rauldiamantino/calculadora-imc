@@ -1,79 +1,86 @@
-const calcButton = document.querySelector("#calculateButton");
-calcButton.addEventListener("click", () => getInputs());
+const $calcButton = document.querySelector("#calculateButton");
+const $clearButton = document.querySelector("#clearButton");
 
-/* get Enter key */
+/* add event listeners */
+$calcButton.addEventListener("click", () => getInputs());
+$clearButton.addEventListener("click", () => clearImcResult());
 document.addEventListener("keypress", e => (e.key === "Enter" ? getInputs() : false));
-
-const clearButton = document.querySelector("#clearButton");
-clearButton.addEventListener("click", () => clearImcResult());
 
 /* get input values */
 const getInputs = () => {
-     const height = formatNumber(document.querySelector("#txtHeight"));
-     const weight = formatNumber(document.querySelector("#txtWeight"));
-     verifyIfEmpty(height, weight);
-     clearButton.focus();
+     const $height = formatNumber(document.querySelector("#txtHeight"));
+     const $weight = formatNumber(document.querySelector("#txtWeight"));
+
+     verifyIfEmpty($height, $weight);
+     $clearButton.focus();
 };
 
 /* format number captured in input */
 const formatNumber = number => number.value.replace(",", ".");
 
 /* checks if the number is valid and prints an error message*/
-const verifyIfEmpty = (a, b) => (a == 0 || b == 0 ? printError() : calculateImc(a, b));
+const verifyIfEmpty = ($height, $weight) =>
+     $height == 0 || $weight == 0 ? printError() : calculateImc($height, $weight);
 
 const printError = fn => {
-     const height = document.querySelector("#txtHeight");
-     height.focus();
-     height.classList.add("inputBackGround");
+     const $height = document.querySelector("#txtHeight");
+     const $weight = document.querySelector("#txtWeight");
+     const $msg = document.querySelector(".otherMsg");
 
-     const weight = document.querySelector("#txtWeight");
-     weight.classList.add("inputBackGround");
+     errorMsg($height, $weight, $msg);
+     clearErrorMsg($height, $weight, $msg);
+};
 
-     const msg = document.querySelector(".otherMsg");
-     msg.innerText = "Preencha os campos corretamente";
-     msg.classList.remove("hide-msg");
+const errorMsg = ($height, $weight, $msg) => {
+     $height.focus();
+     $height.classList.add("inputBackGround");
+     $weight.classList.add("inputBackGround");
+     $msg.innerText = "Preencha os campos corretamente";
+     $msg.classList.remove("hide-msg");
+};
 
+const clearErrorMsg = ($height, $weight, $msg) => {
      setTimeout(function () {
-          height.classList.remove("inputBackGround");
-          weight.classList.remove("inputBackGround");
-
-          msg.innerText = "";
-          msg.classList.add("hide-msg");
-          height.focus()
+          $height.classList.remove("inputBackGround");
+          $weight.classList.remove("inputBackGround");
+          $msg.innerText = "";
+          $msg.classList.add("hide-msg");
+          $height.focus();
      }, 2000);
 };
 
 /* calculate imc with input data  */
-const calculateImc = (h, w) => {
-     const imcFactor = w / (h * h);
-     const alternativeImcFactor = w / ((h / 100) * (h / 100));
-     const ifHeightWithoutComma = h % 1 === 0;
+const calculateImc = (height, weight) => {
+     const imcFactor = weight / (height * height);
+     const alternativeImcFactor = weight / ((height / 100) * (height / 100));
+     const ifHeightWithoutComma = height % 1 === 0;
 
      return ifHeightWithoutComma ? printImc(alternativeImcFactor) : printImc(imcFactor);
 };
 
 const printImc = fn => {
-     const msg = document.querySelector(".resultImc");
-     msg.classList.remove("hide-msg");
-     msg.innerText = fn.toFixed(2);
+     const $msg = document.querySelector(".resultImc");
+     $msg.classList.remove("hide-msg");
+     $msg.innerText = fn.toFixed(2);
 
      /* access the table and set class */
      const getTable = () => {
-          const tableImc = document.querySelectorAll("tbody tr");
-          return tableImc.forEach(verify);
+          const $tableImc = document.querySelectorAll("tbody tr");
+          return $tableImc.forEach(verify);
      };
 
-     const verify = (el, index) => {
-          removeRating(el);
+     /* checks if tr element of the table is equal to imcRating, and paint the tr */
+     const verify = (element, index) => {
+          removeRating(element);
           if (index == imcRating(fn)) {
-               return addRating(el);
+               return addRating(element);
           }
      };
 
      return getTable();
 };
 
-/* add and remove table class */
+/* add and remove table paint class */
 const addRating = element => element.classList.add("imcRating");
 const removeRating = element => element.classList.remove("imcRating");
 
@@ -94,17 +101,16 @@ const imcRating = fn => {
      }
 };
 
+/* clear Button function */
 const clearImcResult = () => {
-     const resultImc = document.querySelector(".resultImc");
-     resultImc.classList.add("hide-msg");
+     const $resultImc = document.querySelector(".resultImc");
+     const $height = document.querySelector("#txtHeight");
+     const $weight = document.querySelector("#txtWeight");
+     const $tableImc = document.querySelectorAll("tbody tr");
 
-     const height = document.querySelector("#txtHeight");
-     height.value = "";
-     height.focus();
-
-     const weight = document.querySelector("#txtWeight");
-     weight.value = "";
-
-     const tableImc = document.querySelectorAll("tbody tr");
-     tableImc.forEach(removeRating);
+     $height.value = "";
+     $weight.value = "";
+     $resultImc.classList.add("hide-msg");
+     $tableImc.forEach(removeRating);
+     $height.focus();
 };
